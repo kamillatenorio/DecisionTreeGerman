@@ -46,6 +46,7 @@ body {
     width: 100%;
 }
 
+/* Image section for all slides */
 .image-section {
     flex: 1;
     padding-right: 20px;
@@ -59,6 +60,7 @@ body {
     border-radius: 10px;
 }
 
+/* Text section for all slides */
 .text-section {
     flex: 1;
     padding-left: 20px;
@@ -78,16 +80,43 @@ body {
     font-weight: bold;
 }
 
-/* Special styling for Slide 3 */
-.slide:nth-child(3) .text-section h2, 
-.slide:nth-child(3) .text-section p {
-    text-align: center; /* Center text for Slide 3 */
-    font-size: 20px; /* Adjust font size */
+.slide:nth-child(3),
+.slide:nth-child(5),
+.slide:nth-child(7) {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide:nth-child(3) .text-section h2,
+.slide:nth-child(5) .text-section h2,
+.slide:nth-child(7) .text-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
     color: #333;
 }
 
-.text-section p strong {
-    color: #000; /* Make strong text stand out */
+.slide:nth-child(3) .image-section,
+.slide:nth-child(5) .image-section,
+.slide:nth-child(7) .image-section {
+    margin-bottom: 20px;
+}
+
+.slide:nth-child(3) .image-section img,
+.slide:nth-child(5) .image-section img,
+.slide:nth-child(7) .image-section img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.slide:nth-child(3) .text-section p,
+.slide:nth-child(5) .text-section p,
+.slide:nth-child(7) .text-section p {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
 }
 
 /* Arrows outside the container */
