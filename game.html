@@ -9,17 +9,23 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="phaseTitle">Data Collection Phase</h1>
+        <h1 id="phaseTitle">Daten-Sammelphase</h1>
         <hr/>
         <div id="controls">
             <p id="message">
-                The decision tree algorithm needs labelled data from previous monkeys to learn a model from. 
-                <br>Below, we have the monkeys that we already know if they bite or not (our labels).
+                Der Entscheidungsbaum-Algorithmus benötigt gekennzeichnete Daten von früheren Affen, 
+                um daraus ein Modell zu lernen. 
+                <br>
+                Unten sehen wir die Affen, von denen wir bereits wissen, ob sie beißen oder nicht 
+                (unsere Beschriftung).
                 <br/> <img src="Dataset.png" alt="Biting and Non-biting Monkeys" class="intro-image">
-                <br>We can use some of the features of the monkeys such as <i>if it’s smiling</i>, <i>has X-eyes</i>, or <i>can blink</i> to build a decision tree model to learn the patterns of the monkeys that bite and monkeys that do not bite.
+                <br>
+                Wir können einige der Merkmale der Affen nutzen, z. B. <i>ob sie lächeln</i>, <i>X-Augen haben</i> 
+                oder <i>blinzeln</i> können, um ein Entscheidungsbaummodell zu erlernen, das vorhersagen kann, ob neue Affen beißen 
+                oder nicht beißen.
             </p>
             <br/>
-            <button id="collectDataBtn">Collect Data</button>
+            <button id="collectDataBtn">Daten sammeln</button>
         </div>
         <div id="datasetContainer" style="display:none;">
             <div class="table-container">
@@ -27,10 +33,10 @@
                     <thead>
                         <tr>
                             <th></th> 
-                            <th>Smile</th>
-                            <th>X-Eyes</th>
-                            <th>Blink</th>
-                            <th>Bite/Not Bite (Label)</th>
+                            <th>Lächeln</th>
+                            <th>X-Augen</th>
+                            <th>Zwinkern</th>
+                            <th>Beißen/Nicht beißen (Beschriftung)</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
@@ -39,6 +45,12 @@
             </div>
         </div>
         <div id="decisionTreeContainer" class="decision-tree"></div>
+    </div>
+    <div id="tipModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalMessage">Your message here...</p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

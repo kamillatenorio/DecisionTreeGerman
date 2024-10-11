@@ -7,7 +7,7 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
 
     let informationGains = []; // Array to store information gains of all trees
 
-    if (button.textContent === "Collect Data") {
+    if (button.textContent === "Daten sammeln") {
         const tableBody = document.getElementById('tableBody');
 
         // Clear any existing rows
@@ -36,17 +36,16 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
         datasetContainer.style.display = 'block';
 
         // Change the button text to "Train the Model"
-        button.textContent = "Train the Model";
+        button.textContent = "Trainiere das Modell";
 
         // Update the message text
-        message.innerHTML = "Now that we have the dataset, let's use the decision tree supervised learning algorithm to create a model to predict if a monkey bites or not.";
-    } else if (button.textContent === "Train the Model") {
+        message.innerHTML = "Lassen Sie uns unsere Daten in einem Tabellenformat organisieren. Unten sehen Sie unseren beschrifteten Datensatz:";
+    } else if (button.textContent === "Trainiere das Modell") {
         // Change the title to "Training Phase - Step I"
-        phaseTitle.textContent = "Training Phase - Step I";
+        phaseTitle.textContent = "Trainingsphase – Iteration I";
 
         // Update the message text to the training phase instructions
-        message.innerHTML = "The first step in the learning process of a decision tree is to decide which feature (i.e., between <strong> Smile</strong>, <strong> X-eyes</strong>, and <strong> Blink</strong>) to use at the root node that split the data into groups that are as pure as possible. By <i>pure</i> we mean that the group is mostly one type of outcome (either bite or do not bite). <br>  <br><br> Observe the groups formed by each of the features, and verify which feature that the decision tree learning algorithm will choose that generates groups with the most purity. Select one.";
-
+        message.innerHTML = "Jetzt ist es an der Zeit, unsere gekennzeichneten Daten dem Entscheidungsbaumalgorithmus zur Verfügung zu stellen. Der Entscheidungsbaumalgorithmus beobachtet die Ein- und Ausgaben und lernt ein Modell, das von der Eingabe zur Ausgabe abbilden kann (d. h. neue Kennzeichnungen für neue Eingaben vorhersagen kann).<br> <br>Wie lernt er ein Modell, das von der Eingabe zur Ausgabe abbilden kann? Mal sehen ...<br> <br>Der erste Schritt im Lernprozess eines Entscheidungsbaums besteht darin, zu entscheiden, welches Merkmal (d. h. zwischen Lächeln, X-Augen und Blinzeln) am Wurzelknoten verwendet werden soll, der die Daten in möglichst reine Gruppen aufteilt. Mit rein meinen wir, dass die Gruppe <br></br>Beobachten Sie die Gruppen, die durch jedes der Merkmale gebildet werden, und überprüfen Sie, welches Merkmal der Algorithmus für das Lernen von Entscheidungsbäumen auswählen wird, um Gruppen mit der höchsten Reinheit zu erzeugen. Wählen Sie eine aus.</br>";
         // Hide the button
         button.style.display = 'none';
 
@@ -58,9 +57,9 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
         const initialEntropy = calculateInitialEntropy(dataset);
 
         // Generate the decision tree simulations and store information gains
-        informationGains.push(createDecisionTreeSimulation('Smile', dataset, imageSources, initialEntropy, null, false)); // No label rectangles in Step I
-        informationGains.push(createDecisionTreeSimulation('X-eyes', dataset, imageSources, initialEntropy, ['No X-eyes', 'X-eyes'], false));
-        informationGains.push(createDecisionTreeSimulation('Blink', dataset, imageSources, initialEntropy, null, false));
+        informationGains.push(createDecisionTreeSimulation('Lächeln', dataset, imageSources, initialEntropy, null, false)); // No label rectangles in Step I
+        informationGains.push(createDecisionTreeSimulation('X-Augen', dataset, imageSources, initialEntropy, ['Keine X-Augen', 'X-Augen'], false));
+        informationGains.push(createDecisionTreeSimulation('Blinzeln', dataset, imageSources, initialEntropy, null, false));
 
         // Determine the maximum information gain
         const maxInformationGain = Math.max(...informationGains);
@@ -73,7 +72,7 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
             treeNode.addEventListener('click', () => {
                 if (informationGains[index] === maxInformationGain) {
                     // Change the title to "Training Phase - Step II"
-                    phaseTitle.textContent = "Training Phase - Step II";
+                    phaseTitle.textContent = "Trainingsphase – Iteration II";
 
                     // Hide all other rectangles except the selected one
                     treeNodes.forEach((node, nodeIndex) => {
@@ -83,17 +82,17 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
                     });
 
                     // Proceed to the next phase with the selected rectangle
-                    message.innerHTML = "The mission now is to discover what should be the next remaining feature (<strong> X-eyes</strong> or <strong> Blink</strong>) to choose that generates groups with most purity. <br> <br> From the options below, which feature the decision tree learning algorithm will choose that generates groups with the most purity? Select one.";
+                    message.innerHTML = "Nach Iteration I besteht die Aufgabe darin, das nächste verbleibende Merkmal (X-Augen oder Blinzeln) auszuwählen, das Gruppen mit der höchsten Reinheit erzeugt. <br><br> Welches Merkmal wird der Entscheidungsbaum-Lernalgorithmus aus den folgenden Optionen auswählen, um Gruppen mit der höchsten Reinheit zu erzeugen? Wählen Sie eine aus.<br><br>Tipp: Beobachte die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.<br>";
 
                     // Create the next set of trees for the second phase
                     decisionTreeContainer.innerHTML = ''; // Clear previous trees
-                    createSecondStepTree('X-eyes', dataset, imageSources, true, false); // Generate tree with "X-eyes" (no rectangles above monkeys)
-                    createSecondStepTree('Blink', dataset, imageSources, true, false);  // Generate tree with "Blink" (no rectangles above monkeys)
+                    createSecondStepTree('X-Augen', dataset, imageSources, true, false); // Generate tree with "X-eyes" (no rectangles above monkeys)
+                    createSecondStepTree('Blinzeln', dataset, imageSources, true, false);  // Generate tree with "Blink" (no rectangles above monkeys)
 
                     // Add event listener for the correct tree in Step II
                     handleStepII();
                 } else {
-                    alert("The decision tree learning algorithm should choose the feature that generates groups with most putriy. Please try again.");
+                    openModal("Tipp: Beobachte die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden. Bitte versuchen Sie es erneut.");
                 }
             });
         });
@@ -108,7 +107,7 @@ function handleStepII() {
         treeNode.addEventListener('click', () => {
             if (index === 0) {
                 // User clicked the first rectangle, proceed to "End of Training Phase"
-                document.getElementById('phaseTitle').textContent = "End of Training Phase";
+                document.getElementById('phaseTitle').textContent = "Ende der Trainingsphase";
 
                 // Hide all other rectangles except the selected one
                 treeNodes.forEach(node => {
@@ -118,7 +117,7 @@ function handleStepII() {
                 });
 
                 // Update the message
-                document.getElementById('message').textContent = "Congratulations! Now, we have a trained model that we can use to predict if a monkey bites or not. But first, let's use the model to see if it is predicting correctly.";
+                document.getElementById('message').textContent = "Herzlichen Glückwunsch! Jetzt haben wir ein trainiertes Modell, das wir verwenden können, um vorherzusagen, ob ein Affe beißt oder nicht. Aber zuerst lassen Sie uns das Modell verwenden, um zu sehen, ob es korrekt vorhersagt.";
 
                 // Clear images, entropy, information gain, and bite stats from the final tree and add proper rectangles
                 clearFinalTreeAndAddLabels(treeNode);
@@ -127,7 +126,7 @@ function handleStepII() {
                 addEvaluateButton();
             } else if (index === 1) {
                 // User clicked the second rectangle, show alert
-                alert("The decision tree learning algorithm should choose the feature that generates groups with most purity. Please try again.");
+                    openModal("Tipp: Beobachte die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden. Bitte versuchen Sie es erneut.");
             }
         });
     });
@@ -148,32 +147,32 @@ function clearFinalTreeAndAddLabels(treeNode) {
 
     // Ensure only one rectangle is added below each arrow
     if (branchContainers.length > 0) {
-        // Remove any existing rectangles below the "Smile" arrow
+        // Remove any existing rectangles below the "Lächeln" arrow
         const existingRects = branchContainers[0].querySelectorAll('.label-rect');
         existingRects.forEach(rect => rect.remove());
 
-        // Add "Bites" rectangle below the "Smile" arrow
+        // Add "Bites" rectangle below the "Lächeln" arrow
         const biteLabel = document.createElement('div');
         biteLabel.className = 'label-rect';
-        biteLabel.textContent = 'Bites';
+        biteLabel.textContent = 'Bisse';
         branchContainers[0].appendChild(biteLabel);
     }
 
-    // "X-eyes" branch (left branch of "Not Smile")
+    // "X-eyes" branch (left branch of "Not Lächeln")
     if (branchContainers[1].querySelector('.branch')) {
         const leftBranch = branchContainers[1].querySelector('.branch');
         const leftLabel = document.createElement('div');
         leftLabel.className = 'label-rect';
-        leftLabel.textContent = 'Bites';
+        leftLabel.textContent = 'Bisse';
         leftBranch.appendChild(leftLabel);
     }
 
-    // "No X-eyes" branch (right branch of "Not Smile")
+    // "No X-eyes" branch (right branch of "Not Lächeln")
     if (branchContainers[1].querySelectorAll('.branch')[1]) {
         const rightBranch = branchContainers[1].querySelectorAll('.branch')[1];
         const rightLabel = document.createElement('div');
         rightLabel.className = 'label-rect';
-        rightLabel.textContent = 'Do not bite';
+        rightLabel.textContent = 'Nicht beißen';
         rightBranch.appendChild(rightLabel);
     }
 
@@ -250,7 +249,7 @@ function calculateInformationGain(initialEntropy, branchEntropies, branchSizes) 
 
 // Function to create the first step decision tree
 function createDecisionTreeSimulation(feature, dataset, imageSources, initialEntropy, customLabels = null, includeLabelRect = true) {
-    const featureIndex = { 'Smile': 0, 'X-eyes': 1, 'Blink': 2 }[feature];
+    const featureIndex = { 'Lächeln': 0, 'X-Augen': 1, 'Blinzeln': 2 }[feature];
     const uniqueValues = [...new Set(dataset.map(row => row[featureIndex]))];
     const decisionTreeContainer = document.getElementById('decisionTreeContainer');
 
@@ -309,7 +308,7 @@ function createDecisionTreeSimulation(feature, dataset, imageSources, initialEnt
 
         const biteStats = document.createElement('div');
         biteStats.className = 'bite-stats';
-        biteStats.textContent = `${biteCount}/${totalCount} ${biteCount === 1 ? 'bite' : 'bites'}`;
+        biteStats.textContent = `${biteCount}/${totalCount} ${biteCount === 1 ? 'Biss' : 'Bisse'}`;
 
         const entropyDisplay = document.createElement('div');
         entropyDisplay.className = 'entropy';
@@ -382,20 +381,20 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
         treeContainer.style.width = '500px'; // Increase width for second step
     }
 
-    // Root node: Smile
+    // Root node: Lächeln
     const rootNode = document.createElement('div');
     rootNode.className = 'ellipse';
-    rootNode.textContent = 'Smile';
+    rootNode.textContent = 'Lächeln';
     treeContainer.appendChild(rootNode);
 
     const arrowContainer = document.createElement('div');
     arrowContainer.className = 'arrow-container';
 
-    // Left branch (Smile)
-    const leftBranch = createBranch('Smile', 'Bites', dataset.filter(row => row[0] === 'Smile'), imageSources, true);
+    // Left branch (Lächeln)
+    const leftBranch = createBranch('Lächeln', 'Bisse', dataset.filter(row => row[0] === 'Lächeln'), imageSources, true);
     arrowContainer.appendChild(leftBranch);
 
-    // Right branch (Not Smile -> Second Feature)
+    // Right branch (Not Lächeln -> Second Feature)
     const rightBranchContainer = document.createElement('div');
     rightBranchContainer.className = 'branch';
 
@@ -405,7 +404,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
 
     const rightArrowLabel = document.createElement('div');
     rightArrowLabel.className = 'arrow-label';
-    rightArrowLabel.textContent = 'Not Smile';
+    rightArrowLabel.textContent = 'Nicht Lächeln';
 
     const secondNode = document.createElement('div');
     secondNode.className = 'ellipse';
@@ -415,8 +414,8 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
     secondArrowContainer.className = 'arrow-container';
 
     // Second Feature branches
-    const secondBranch1 = createBranch(`${secondFeature}`, `${secondFeature}`, dataset.filter(row => row[0] === 'Not Smile' && row[secondFeatureIndex(secondFeature)] === `${secondFeature}`), imageSources, true, includeLabelRect);
-    const secondBranch2 = createBranch(`No ${secondFeature}`, `No ${secondFeature}`, dataset.filter(row => row[0] === 'Not Smile' && row[secondFeatureIndex(secondFeature)] !== `${secondFeature}`), imageSources, false, includeLabelRect);
+    const secondBranch1 = createBranch(`${secondFeature}`, `${secondFeature}`, dataset.filter(row => row[0] === 'Nicht Lächeln' && row[secondFeatureIndex(secondFeature)] === `${secondFeature}`), imageSources, true, includeLabelRect);
+    const secondBranch2 = createBranch(`Nicht ${secondFeature}`, `Nicht ${secondFeature}`, dataset.filter(row => row[0] === 'Nicht Lächeln' && row[secondFeatureIndex(secondFeature)] !== `${secondFeature}`), imageSources, false, includeLabelRect);
 
     secondArrowContainer.appendChild(secondBranch1);
     secondArrowContainer.appendChild(secondBranch2);
@@ -431,7 +430,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
     treeContainer.appendChild(arrowContainer);
 
     // Calculate overall information gain for this split
-    const initialEntropy = calculateInitialEntropy(dataset.filter(row => row[0] === 'Not Smile'));
+    const initialEntropy = calculateInitialEntropy(dataset.filter(row => row[0] === 'Nicht Lächeln'));
     const overallInformationGain = calculateInformationGain(
         initialEntropy,
         [secondBranch1.entropy, secondBranch2.entropy],
@@ -456,7 +455,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
 
         if (overallInformationGain.toFixed(2) == maxGain.toFixed(2)) {
             // Change the title to "End of Training Phase"
-            document.getElementById('phaseTitle').textContent = "End of Training Phase";
+            document.getElementById('phaseTitle').textContent = "Ende der Trainingsphase";
 
             // Hide all other rectangles except the selected one
             const allTrees = document.querySelectorAll('.tree-node');
@@ -467,7 +466,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
             });
 
             // Update the message
-            document.getElementById('message').textContent = "Congratulations! You have successfully trained the model.";
+            document.getElementById('message').textContent = "Herzlichen Glückwunsch! Sie haben das Modell erfolgreich trainiert.";
 
             // Clear images, entropy, information gain, and bite stats from the final tree and add proper rectangles
             clearFinalTreeAndAddLabels(treeContainer);
@@ -485,7 +484,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
 
 // Helper function to get the index of a feature
 function secondFeatureIndex(feature) {
-    return { 'X-eyes': 1, 'Blink': 2 }[feature];
+    return { 'X-Augen': 1, 'Blinzeln': 2 }[feature];
 }
 
 // Function to create a branch with a label, associated images, and bite stats
@@ -522,7 +521,7 @@ function createBranch(label, branchLabel, filteredDataset, imageSources, isLeft 
 
     const biteStats = document.createElement('div');
     biteStats.className = 'bite-stats';
-    biteStats.textContent = `${biteCount}/${totalCount} ${biteCount === 1 ? 'bite' : 'bites'}`;
+    biteStats.textContent = `${biteCount}/${totalCount} ${biteCount === 1 ? 'Biss' : 'Bisse'}`;
 
     const entropyDisplay = document.createElement('div');
     entropyDisplay.className = 'entropy';
@@ -553,20 +552,41 @@ function createBranch(label, branchLabel, filteredDataset, imageSources, isLeft 
     return branchContainer;
 }
 
+function openModal(messageText) {
+    const modal = document.getElementById("tipModal");
+    const modalMessage = document.getElementById("modalMessage");
+    const span = document.getElementsByClassName("close")[0];
+
+    modalMessage.innerHTML = messageText;
+    modal.style.display = "block";
+
+    // Close the modal when the user clicks the close button (x)
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    // Close the modal when the user clicks anywhere outside of the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+}
+
 // Updated dataset as provided
 const dataset = [
-    ["Smile", "No X-eyes", "Blink", 1],
-    ["Smile", "X-eyes", "No Blink", 1],
-    ["Smile", "No X-eyes", "No Blink", 1],
-    ["Not Smile", "X-eyes", "No Blink", 1],
-    ["Not Smile", "No X-eyes", "No Blink", 0],
-    ["Not Smile", "No X-eyes", "Blink", 0],
-    ["Not Smile", "No X-eyes", "Blink", 0],
-    ["Not Smile", "No X-eyes", "No Blink", 0],
-    ["Not Smile", "No X-eyes", "Blink", 0],
-    ["Not Smile", "No X-eyes", "No Blink", 0],
-    ["Not Smile", "No X-eyes", "No Blink", 0],
-    ["Not Smile", "No X-eyes", "No Blink", 0],
+    ["Lächeln", "Keine X-Augen", "Blinzeln", 1],
+    ["Lächeln", "Keine X-Augen", "Kein Blinzeln", 1],
+    ["Nicht lächeln", "X-Augen", "Kein Blinzeln", 1],
+    ["Nicht lächeln", "Keine X-Augen", "Kein Blinzeln", 0],
+    ["Nicht lächeln", "Keine X-Augen", "Blinzeln", 0],
+    ["Nicht lächeln", "Keine X-Augen", "Blinzeln", 0],
+    ["Nicht lächeln", "Keine X-Augen", "Blinzeln", 0],
+    ["Nicht lächeln", "Keine X-Augen", "Kein Blinzeln", 0],
+    ["Nicht lächeln", "Keine X-Augen", "Blinzeln", 0],
+    ["Nicht lächeln", "Keine X-Augen", "Kein Blinzeln", 0],
+    ["Nicht lächeln", "Keine X-Augen", "Kein Blinzeln", 0],
+    ["Nicht lächeln", "Keine X-Augen", "Kein Blinzeln", 0],
 ];
 
 const imageSources = [
@@ -583,3 +603,6 @@ const imageSources = [
     '11.png', // Image 11
     '12.png', // Image 12
 ];
+
+
+
