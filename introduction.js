@@ -53,18 +53,17 @@ function checkAnswerSlide4() {
     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
 
     if (!selectedAnswer) {
-        feedback4.innerHTML = "Please select an answer!";
+        feedback4.innerHTML = "Bitte wählen Sie eine Antwort aus!";
         feedback4.style.display = "block";
         return;
     }
 
     if (selectedAnswer.value === "A") {
-        feedback4.innerHTML = "Correct! 'Features' are the characteristics of things in supervised learning.";
+        feedback4.innerHTML = "Richtig! Merkmale sind Eigenschaften/Charakteristika von Dingen, die wir als Menschen beschreiben können. Merkmale sind beispielsweise Geschlecht, Haarfarbe und Größe.";
         feedback4.style.display = "block";
         nextArrow.style.display = "block"; // Show the next arrow so they can continue
     } else {
-        feedback4.innerHTML = `Features are properties/characteristics of things, ways that we, as humans, might describe them. 
-        For example, the features are sex, hair color, and height.`;
+        feedback4.innerHTML = `Falsch! Die richtige Antwort lautet: Merkmale. Merkmale sind Eigenschaften/Charakteristika von Dingen, die wir als Menschen beschreiben können. Merkmale sind beispielsweise Geschlecht, Haarfarbe und Größe.`;
         feedback4.style.display = "block";
     }
 }
@@ -74,17 +73,17 @@ function checkAnswerSlide6() {
     const selectedAnswer = document.querySelector('input[name="solution"]:checked');
 
     if (!selectedAnswer) {
-        feedback6.innerHTML = "Please select an answer!";
+        feedback6.innerHTML = "Bitte wählen Sie eine Antwort aus!";
         feedback6.style.display = "block";
         return;
     }
 
     if (selectedAnswer.value === "B") {
-        feedback6.innerHTML = "Correct! Creating a model based on features is the correct approach.";
+        feedback6.innerHTML = "Richtig! Das können wir! Wir erstellen ein Modell auf der Grundlage der vorhandenen beschrifteten Daten.";
         feedback6.style.display = "block";
         nextArrow.style.display = "block"; // Show the next arrow so they can continue
     } else {
-        feedback6.innerHTML = "Incorrect. Creating a model based on features is the correct approach.";
+        feedback6.innerHTML = "Falsch! Wir erstellen ein Modell auf der Grundlage der vorhandenen beschrifteten Daten.";
         feedback6.style.display = "block";
     }
 }
