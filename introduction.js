@@ -48,9 +48,9 @@ function changeSlide(step) {
     showSlide(currentSlideIndex + step);
 }
 
-// Function to check the answer for Slide 4
 function checkAnswerSlide4() {
     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    const feedback4 = document.getElementById('feedback-4'); // Ensure feedback element is selected
 
     if (!selectedAnswer) {
         feedback4.innerHTML = "Bitte wählen Sie eine Antwort aus!";
@@ -68,9 +68,9 @@ function checkAnswerSlide4() {
     }
 }
 
-// Function to check the answer for Slide 6
 function checkAnswerSlide6() {
     const selectedAnswer = document.querySelector('input[name="solution"]:checked');
+    const feedback6 = document.getElementById('feedback-6'); // Ensure feedback element is selected
 
     if (!selectedAnswer) {
         feedback6.innerHTML = "Bitte wählen Sie eine Antwort aus!";
