@@ -186,7 +186,7 @@ function addEvaluateButton() {
     const decisionTreeContainer = document.getElementById('decisionTreeContainer');
 
     const evaluateButton = document.createElement('button');
-    evaluateButton.textContent = "Use your model";
+    evaluateButton.textContent = "Verwenden Sie Ihr Modell";
     evaluateButton.id = "evaluateButton";
     evaluateButton.style.marginTop = "20px";
     evaluateButton.style.padding = "10px 20px";
