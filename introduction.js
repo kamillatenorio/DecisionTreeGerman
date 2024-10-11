@@ -30,7 +30,7 @@ function showSlide(index) {
 
     // Check if it's the last slide
     if (currentSlideIndex === slides.length - 1) {
-        nextArrow.textContent = "GO"; // Change Next button text
+        nextArrow.textContent = "-›"; // Change Next button text
         nextArrow.onclick = () => {
             window.location.href = "game.html"; // Redirect to game.html when clicked
         };
