@@ -180,7 +180,7 @@ function clearFinalTreeAndAddLabels(treeNode) {
     treeNode.style.cursor = 'default';
     treeNode.replaceWith(treeNode.cloneNode(true)); // Remove event listeners by cloning the node
 }
-
+ 
 // Function to add "Evaluate your model" button below the final tree
 function addEvaluateButton() {
     const decisionTreeContainer = document.getElementById('decisionTreeContainer');
@@ -415,7 +415,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
 
     // Second Feature branches
     const secondBranch1 = createBranch(`${secondFeature}`, `${secondFeature}`, dataset.filter(row => row[0] === 'Nicht Lächeln' && row[secondFeatureIndex(secondFeature)] === `${secondFeature}`), imageSources, true, includeLabelRect);
-    const secondBranch2 = createBranch(`Nicht ${secondFeature}`, `Nicht ${secondFeature}`, dataset.filter(row => row[0] === 'Nicht Lächeln' && row[secondFeatureIndex(secondFeature)] !== `${secondFeature}`), imageSources, false, includeLabelRect);
+    const secondBranch2 = createBranch(`Keine ${secondFeature}`, `Kein ${secondFeature}`, dataset.filter(row => row[0] === 'Nicht Lächeln' && row[secondFeatureIndex(secondFeature)] !== `${secondFeature}`), imageSources, false, includeLabelRect);
 
     secondArrowContainer.appendChild(secondBranch1);
     secondArrowContainer.appendChild(secondBranch2);
@@ -576,10 +576,10 @@ function openModal(messageText) {
 // Updated dataset as provided
 const dataset = [
     ["Lächeln", "Keine X-Augen", "Blinzeln", 1],
+    ["Lächeln", "X-Augen", "Kein Blinzeln", 1],
     ["Lächeln", "Keine X-Augen", "Kein Blinzeln", 1],
     ["Nicht lächeln", "X-Augen", "Kein Blinzeln", 1],
     ["Nicht lächeln", "Keine X-Augen", "Kein Blinzeln", 0],
-    ["Nicht lächeln", "Keine X-Augen", "Blinzeln", 0],
     ["Nicht lächeln", "Keine X-Augen", "Blinzeln", 0],
     ["Nicht lächeln", "Keine X-Augen", "Blinzeln", 0],
     ["Nicht lächeln", "Keine X-Augen", "Kein Blinzeln", 0],
