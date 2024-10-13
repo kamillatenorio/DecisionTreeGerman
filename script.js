@@ -488,8 +488,6 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
 
             // Add the "Evaluate your model" button
             addEvaluateButton();
-        } else {
-            openModal("Tipp: Beobachte die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden. Bitte versuchen Sie es erneut.");
         }
     });
 
