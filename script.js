@@ -378,7 +378,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
 
     // Adjust width if it's the second step
     if (isSecondStep) {
-        treeContainer.style.width = '500px'; // Increase width for second step
+        treeContainer.style.width = '600px'; // Increase width for second step
     }
 
     // Root node: Lächeln
@@ -390,11 +390,17 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
     const arrowContainer = document.createElement('div');
     arrowContainer.className = 'arrow-container';
 
+    // Helper function to get the index of a feature
+    function secondFeatureIndex(feature) {
+        return { 'X-Augen': 1, 'Blinzeln': 2 }[feature];
+    }
+
     // Left branch (Lächeln)
-    const leftBranch = createBranch('Lächeln', 'Bisse', dataset.filter(row => row[0] === 'Lächeln'), imageSources, true);
+    const leftBranchData = dataset.map((row, index) => ({ row, index })).filter(item => item.row[0] === 'Lächeln');
+    const leftBranch = createBranch('Lächeln', 'Bisse', leftBranchData, imageSources, true);
     arrowContainer.appendChild(leftBranch);
 
-    // Right branch (Not Lächeln -> Second Feature)
+    // Right branch (Nicht lächeln -> Second Feature)
     const rightBranchContainer = document.createElement('div');
     rightBranchContainer.className = 'branch';
 
@@ -404,7 +410,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
 
     const rightArrowLabel = document.createElement('div');
     rightArrowLabel.className = 'arrow-label';
-    rightArrowLabel.textContent = 'Nicht Lächeln';
+    rightArrowLabel.textContent = 'Nicht lächeln';
 
     const secondNode = document.createElement('div');
     secondNode.className = 'ellipse';
@@ -413,9 +419,18 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
     const secondArrowContainer = document.createElement('div');
     secondArrowContainer.className = 'arrow-container';
 
+    // Include indices in filtered data for the second feature branches
+    const secondBranch1Data = dataset.map((row, index) => ({ row, index })).filter(item =>
+        item.row[0] === 'Nicht lächeln' && item.row[secondFeatureIndex(secondFeature)] === secondFeature
+    );
+
+    const secondBranch2Data = dataset.map((row, index) => ({ row, index })).filter(item =>
+        item.row[0] === 'Nicht lächeln' && item.row[secondFeatureIndex(secondFeature)] !== secondFeature
+    );
+
     // Second Feature branches
-    const secondBranch1 = createBranch(`${secondFeature}`, `${secondFeature}`, dataset.filter(row => row[0] === 'Nicht Lächeln' && row[secondFeatureIndex(secondFeature)] === `${secondFeature}`), imageSources, true, includeLabelRect);
-    const secondBranch2 = createBranch(`Keine ${secondFeature}`, `Kein ${secondFeature}`, dataset.filter(row => row[0] === 'Nicht Lächeln' && row[secondFeatureIndex(secondFeature)] !== `${secondFeature}`), imageSources, false, includeLabelRect);
+    const secondBranch1 = createBranch(`${secondFeature}`, 'Bisse', secondBranch1Data, imageSources, true, includeLabelRect);
+    const secondBranch2 = createBranch(`Keine ${secondFeature}`, 'Nicht beißen', secondBranch2Data, imageSources, false, includeLabelRect);
 
     secondArrowContainer.appendChild(secondBranch1);
     secondArrowContainer.appendChild(secondBranch2);
@@ -430,7 +445,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
     treeContainer.appendChild(arrowContainer);
 
     // Calculate overall information gain for this split
-    const initialEntropy = calculateInitialEntropy(dataset.filter(row => row[0] === 'Nicht Lächeln'));
+    const initialEntropy = calculateInitialEntropy(dataset.filter(row => row[0] === 'Nicht lächeln'));
     const overallInformationGain = calculateInformationGain(
         initialEntropy,
         [secondBranch1.entropy, secondBranch2.entropy],
@@ -441,11 +456,11 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
     overallInfoGainDisplay.className = 'information-gain';
     overallInfoGainDisplay.style.fontWeight = 'bold';
     overallInfoGainDisplay.style.marginTop = '10px';
-    overallInfoGainDisplay.textContent = `  `;
+    //overallInfoGainDisplay.textContent = `Informationsgewinn: ${overallInformationGain.toFixed(2)}`;
 
     // Add click functionality
     treeContainer.style.cursor = 'pointer'; // Indicate it's clickable
-    treeContainer.addEventListener('click', function() {
+    treeContainer.addEventListener('click', function () {
         const allGains = document.querySelectorAll('.information-gain');
         let maxGain = -Infinity;
         allGains.forEach(gain => {
@@ -453,7 +468,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
             if (gainValue > maxGain) maxGain = gainValue;
         });
 
-        if (overallInformationGain.toFixed(2) == maxGain.toFixed(2)) {
+        if (overallInformationGain.toFixed(2) === maxGain.toFixed(2)) {
             // Change the title to "End of Training Phase"
             document.getElementById('phaseTitle').textContent = "Ende der Trainingsphase";
 
@@ -466,7 +481,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
             });
 
             // Update the message
-            document.getElementById('message').textContent = "Herzlichen Glückwunsch! Sie haben das Modell erfolgreich trainiert.";
+            document.getElementById('message').textContent = "Herzlichen Glückwunsch! Jetzt haben wir ein trainiertes Modell, das wir verwenden können, um vorherzusagen, ob ein Affe beißt oder nicht. Aber zuerst lassen Sie uns das Modell verwenden, um zu sehen, ob es korrekt vorhersagt.";
 
             // Clear images, entropy, information gain, and bite stats from the final tree and add proper rectangles
             clearFinalTreeAndAddLabels(treeContainer);
@@ -474,6 +489,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
             // Add the "Evaluate your model" button
             addEvaluateButton();
         } else {
+            openModal("Tipp: Beobachte die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden. Bitte versuchen Sie es erneut.");
         }
     });
 
@@ -482,19 +498,20 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
     decisionTreeContainer.appendChild(treeContainer);
 }
 
+
 // Helper function to get the index of a feature
 function secondFeatureIndex(feature) {
     return { 'X-Augen': 1, 'Blinzeln': 2 }[feature];
 }
 
 // Function to create a branch with a label, associated images, and bite stats
-function createBranch(label, branchLabel, filteredDataset, imageSources, isLeft = false, includeLabelRect = true) {
+function createBranch(label, branchLabel, filteredDataWithIndices, imageSources, isLeft = false, includeLabelRect = true) {
     const branchContainer = document.createElement('div');
     branchContainer.className = 'branch';
 
     const line = document.createElement('div');
     line.className = 'line';
-    line.style.transform = isLeft ? 'rotate(45deg)' : 'rotate(-45deg)'; // Rotate the line only for the left branch
+    line.style.transform = isLeft ? 'rotate(45deg)' : 'rotate(-45deg)'; // Rotate the line accordingly
 
     const arrowLabel = document.createElement('div');
     arrowLabel.className = 'arrow-label';
@@ -506,9 +523,11 @@ function createBranch(label, branchLabel, filteredDataset, imageSources, isLeft 
     let biteCount = 0;
     let totalCount = 0;
 
-    filteredDataset.forEach((row, rowIndex) => {
+    filteredDataWithIndices.forEach(item => {
+        const { row, index } = item;
+
         const img = document.createElement('img');
-        img.src = imageSources[dataset.indexOf(row)];
+        img.src = imageSources[index]; // Use the correct index
         imagesContainer.appendChild(img);
 
         if (row[3] === 1) {
@@ -525,7 +544,7 @@ function createBranch(label, branchLabel, filteredDataset, imageSources, isLeft 
 
     const entropyDisplay = document.createElement('div');
     entropyDisplay.className = 'entropy';
-    entropyDisplay.textContent = ` `;
+    //entropyDisplay.textContent = `Entropie: ${entropy.toFixed(2)}`;
 
     branchContainer.appendChild(arrowLabel);
     branchContainer.appendChild(line);
@@ -545,12 +564,13 @@ function createBranch(label, branchLabel, filteredDataset, imageSources, isLeft 
     branchContainer.appendChild(biteStats); // Add bite stats below images
     branchContainer.appendChild(entropyDisplay); // Add entropy below images
 
-    // Store the entropy and counts in the branch container
+    // Store the entropy and counts in the branch container for later use
     branchContainer.entropy = entropy;
     branchContainer.totalCount = totalCount;
 
     return branchContainer;
 }
+
 
 function openModal(messageText) {
     const modal = document.getElementById("tipModal");
