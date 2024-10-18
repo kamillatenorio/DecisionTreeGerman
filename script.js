@@ -35,17 +35,30 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
         // Display the dataset container
         datasetContainer.style.display = 'block';
 
+        datasetContainer.parentNode.insertBefore(button, datasetContainer.nextSibling);
+
         // Change the button text to "Train the Model"
         button.textContent = "Trainiere das Modell";
 
         // Update the message text
-        message.innerHTML = "Lassen Sie uns unsere Daten in einem Tabellenformat organisieren. Unten sehen Sie unseren beschrifteten Datensatz:";
+        message.innerHTML = `Lassen Sie uns unsere Daten in einem Tabellenformat organisieren. Unten sehen Sie unseren beschrifteten Datensatz:`;
     } else if (button.textContent === "Trainiere das Modell") {
         // Change the title to "Training Phase - Step I"
         phaseTitle.textContent = "Trainingsphase – Iteration I";
 
         // Update the message text to the training phase instructions
-        message.innerHTML = "Jetzt ist es an der Zeit, unsere gekennzeichneten Daten dem Entscheidungsbaum-Algorithmus zur Verfügung zu stellen. Der Entscheidungsbaum-Algorithmus beobachtet die Ein- und Ausgaben und lernt ein Modell, das von der Eingabe zur Ausgabe abbilden kann (d. h. neue Kennzeichnungen für neue Eingaben vorhersagen kann). <br> <br> Wie lernt er ein Modell, das von der Eingabe zur Ausgabe abbilden kann? Mal sehen... <br> <br> Der erste Schritt im Lernprozess eines Entscheidungsbaums besteht darin, zu entscheiden, welches Merkmal (d. h. zwischen Lächeln, X-Augen und Blinzeln) am Wurzelknoten verwendet werden soll, der die Daten in Gruppen aufteilt, die so rein wie möglich sind. Mit rein meinen wir, dass die Gruppe hauptsächlich eine Art von Ergebnis hat (entweder beißen oder nicht beißen). <br></br> Tipp: Beobachten Sie die Gruppen, die durch jedes der Merkmale gebildet werden, und überprüfen Sie, welches Merkmal der Algorithmus für das Lernen von Entscheidungsbäumen auswählen wird, um Gruppen mit der höchsten Reinheit zu erzeugen. Wählen Sie eine aus.</br>";
+        message.innerHTML = `Jetzt ist es an der Zeit, unsere gekennzeichneten Daten dem Entscheidungsbaum-Algorithmus zur Verfügung zu stellen. 
+        Der Entscheidungsbaum-Algorithmus beobachtet die Ein- und Ausgaben und lernt ein Modell, das von der Eingabe zur Ausgabe abbilden kann 
+        (d. h. neue Kennzeichnungen für neue Eingaben vorhersagen kann). <br> <br> Wie lernt er ein Modell, das von der Eingabe zur Ausgabe abbilden kann?
+        Mal sehen... 
+        <br> <br> 
+        Der erste Schritt im Lernprozess eines Entscheidungsbaums besteht darin, zu entscheiden, welches Merkmal (d. h. zwischen Lächeln, X-Augen und Blinzeln)
+        am Wurzelknoten verwendet werden soll, der die Daten in Gruppen aufteilt, die so rein wie möglich sind. Mit rein meinen wir, dass die Gruppe hauptsächlich 
+        eine Art von Ergebnis hat (entweder beißen oder nicht beißen). 
+        <br></br> <span style="color: rgb(98, 126, 110); font-family: 'Fira Sans'; font-weight: 900;">
+        <strong>Tipp: Beobachten Sie die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken 
+        Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.</strong>
+        </span></br>`;
         // Hide the button
         button.style.display = 'none';
 
@@ -82,7 +95,15 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
                     });
 
                     // Proceed to the next phase with the selected rectangle
-                    message.innerHTML = "Nach Iteration I besteht die Aufgabe darin, das nächste verbleibende Merkmal (X-Augen oder Blinzeln) auszuwählen, das Gruppen mit der höchsten Reinheit erzeugt. <br><br>  Welches Merkmal wird der Entscheidungsbaum-Lernalgorithmus aus den folgenden Optionen auswählen, um Gruppen mit der höchsten Reinheit zu erzeugen? Wählen Sie eine aus.<br><br>Tipp: Beobachten Sie die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.<br>";
+                    message.innerHTML = `Nach Iteration I besteht die Aufgabe darin, das nächste verbleibende Merkmal (X-Augen oder Blinzeln) 
+                    auszuwählen, das Gruppen mit der höchsten Reinheit erzeugt. <br><br>  Welches Merkmal wird der Entscheidungsbaum-Lernalgorithmus aus 
+                    den folgenden Optionen auswählen, um Gruppen mit der höchsten Reinheit zu erzeugen? Wählen Sie eine aus.
+                    <br><br>
+                    <span style="color: rgb(98, 126, 110); font-family: 'Fira Sans'; font-weight: 900;">Tipp: Beobachten Sie die Gruppen, die durch
+                     die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden 
+                     Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.
+                     </span></br>
+                    `;
 
                     // Create the next set of trees for the second phase
                     decisionTreeContainer.innerHTML = ''; // Clear previous trees
@@ -193,6 +214,14 @@ function addEvaluateButton() {
     evaluateButton.style.fontSize = "16px";
     evaluateButton.style.display = "block";
     evaluateButton.style.margin = "20px auto";
+    evaluateButton.style.fontFamily = "Fira Sans";
+    evaluateButton.style.color = "white";
+    evaluateButton.style.backgroundColor = "rgb(98, 126, 110)";
+    evaluateButton.style.border = "none";
+    evaluateButton.style.borderRadius = "20px";
+    evaluateButton.style.cursor = "pointer";
+    evaluateButton.style.boxShadow = "0 8px 12px rgba(17, 17, 17, 0.2)";
+
 
     decisionTreeContainer.appendChild(evaluateButton);
 

@@ -21,6 +21,7 @@ body {
     max-height: 100vh; /* Ensure it doesn't exceed the viewport height */
     overflow-y: auto; 
 }
+
 .button {
     font-family: 'Fira Sans';
     position: absolute;
@@ -35,6 +36,7 @@ body {
     cursor: pointer;
     box-shadow: 0 8px 12px rgba(17, 17, 17, 0.2);
 }
+
 .button:hover {
     background-color: rgb(98, 126, 110);
 }

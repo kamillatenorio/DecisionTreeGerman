@@ -117,6 +117,13 @@ img {
     border-radius: 10px; /* Rounded corners */
     background-color: #f9f9f9; /* Light background color */
     margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.tree-node:hover {
+    transform: scale(1.05); /* Slightly enlarge the tree node */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+    cursor: pointer; /* Make sure the cursor changes to a pointer */
+    background-color: rgba(98, 126, 110, 0.2); /* Add a slight background color */
 }
 .ellipse {
     width: 120px;
@@ -141,6 +148,7 @@ img {
     position: relative;
     width: 45%;
 }
+
 .branch .arrow {
     width: 2px;
     background-color: black;

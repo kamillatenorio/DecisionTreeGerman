@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Fira Sans', Arial, sans-serif;
+    font-family: 'Fira Sans Light', sans-serif;
     background-color: #ffff;
     display: flex;
     justify-content: center;
@@ -70,14 +70,12 @@ body {
 .text-section h2 {
     font-size: 24px;
     margin-bottom: 15px;
-    font-weight: bold;
     color: #333;
 }
 
 .text-section p {
     font-size: 18px;
     color: #333;
-    font-weight: bold;
 }
 
 .slide:nth-child(3),
@@ -144,6 +142,22 @@ body {
 .prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
+}
+
+.button {
+    font-family: 'Fira Sans';
+    color: white;
+    background-color: rgb(98, 126, 110);
+    border: none;
+    font-size: 15px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0 8px 12px rgba(17, 17, 17, 0.2);
+}
+
+.button:hover {
+    background-color: rgb(98, 126, 110);
 }
 
 /* Adjust the positioning when the container is resized */
