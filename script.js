@@ -52,10 +52,14 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
         (d. h. neue Kennzeichnungen für neue Eingaben vorhersagen kann). <br> <br> Wie lernt er ein Modell, das von der Eingabe zur Ausgabe abbilden kann?
         Mal sehen... 
         <br> <br> 
-        Der erste Schritt im Lernprozess eines Entscheidungsbaums besteht darin, zu entscheiden, welches Merkmal (d. h. zwischen Lächeln, X-Augen und Blinzeln)
-        am Wurzelknoten verwendet werden soll, der die Daten in Gruppen aufteilt, die so rein wie möglich sind. Mit rein meinen wir, dass die Gruppe hauptsächlich 
-        eine Art von Ergebnis hat (entweder beißen oder nicht beißen). 
-        <br></br> <span style="color: rgb(98, 126, 110); font-family: 'Fira Sans'; font-weight: 900;">
+        Der erste Schritt des Entscheidungsbaumalgorithmus beim Lernen eines Modells besteht darin, zu entscheiden, welches Merkmal (d. h. zwischen Lächeln, 
+        X-Augen und Blinzeln) an der Spitze des Baums (Wurzelknoten) verwendet werden soll. Der Algorithmus wählt das Merkmal aus, das die Daten in Gruppen 
+        trennt, die so rein wie möglich sind. Mit rein meinen wir, dass die Gruppe hauptsächlich eine Art von Ergebnis hat (entweder beißen oder nicht beißen).
+        <br></br>
+        <span style="color: #574092; font-family: 'Fira Sans'; font-weight: 900; font-size: 18px">
+        ! Aufgabe: Analysieren Sie die folgenden drei Entscheidungsbäume und wählen Sie denjenigen aus, den der Algorithmus wählen würde, d. h. denjenigen mit dem Merkmal, das die reinsten Gruppen erzeugt.  
+        </span> <br></br>
+        <span style="color: rgb(98, 126, 110); font-family: 'Fira Sans'; font-weight: 900; font-style: italic;">
         <strong>Tipp: Beobachten Sie die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken 
         Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.</strong>
         </span></br>`;
@@ -99,7 +103,11 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
                     auszuwählen, das Gruppen mit der höchsten Reinheit erzeugt. <br><br>  Welches Merkmal wird der Entscheidungsbaum-Lernalgorithmus aus 
                     den folgenden Optionen auswählen, um Gruppen mit der höchsten Reinheit zu erzeugen? Wählen Sie eine aus.
                     <br><br>
-                    <span style="color: rgb(98, 126, 110); font-family: 'Fira Sans'; font-weight: 900;">Tipp: Beobachten Sie die Gruppen, die durch
+                    <span style="color: #574092; font-family: 'Fira Sans'; font-weight: 900; font-size: 18px;">
+                        ! Aufgabe: Analysieren Sie die folgenden 2 Entscheidungsbäume und wählen Sie den aus, den der Algorithmus wählen würde.
+                     </span></br><br>
+                    <span style="color: rgb(98, 126, 110); font-family: 'Fira Sans'; font-weight: 900; font-style: italic;">
+                    Tipp: Beobachten Sie die Gruppen, die durch
                      die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden 
                      Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.
                      </span></br>
