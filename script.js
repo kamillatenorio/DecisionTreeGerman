@@ -45,7 +45,7 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
         phaseTitle.textContent = "Trainingsphase – Iteration I";
 
         // Update the message text to the training phase instructions
-        message.innerHTML = "Jetzt ist es an der Zeit, unsere gekennzeichneten Daten dem Entscheidungsbaumalgorithmus zur Verfügung zu stellen. Der Entscheidungsbaumalgorithmus beobachtet die Ein- und Ausgaben und lernt ein Modell, das von der Eingabe zur Ausgabe abbilden kann (d. h. neue Kennzeichnungen für neue Eingaben vorhersagen kann).<br> <br>Wie lernt er ein Modell, das von der Eingabe zur Ausgabe abbilden kann? Mal sehen ...<br> <br>Der erste Schritt im Lernprozess eines Entscheidungsbaums besteht darin, zu entscheiden, welches Merkmal (d. h. zwischen Lächeln, X-Augen und Blinzeln) am Wurzelknoten verwendet werden soll, der die Daten in möglichst reine Gruppen aufteilt. Mit rein meinen wir, dass die Gruppe <br></br>Beobachten Sie die Gruppen, die durch jedes der Merkmale gebildet werden, und überprüfen Sie, welches Merkmal der Algorithmus für das Lernen von Entscheidungsbäumen auswählen wird, um Gruppen mit der höchsten Reinheit zu erzeugen. Wählen Sie eine aus.</br>";
+        message.innerHTML = "Jetzt ist es an der Zeit, unsere gekennzeichneten Daten dem Entscheidungsbaum-Algorithmus zur Verfügung zu stellen. Der Entscheidungsbaum-Algorithmus beobachtet die Ein- und Ausgaben und lernt ein Modell, das von der Eingabe zur Ausgabe abbilden kann (d. h. neue Kennzeichnungen für neue Eingaben vorhersagen kann). <br> <br> Wie lernt er ein Modell, das von der Eingabe zur Ausgabe abbilden kann? Mal sehen... <br> <br> Der erste Schritt im Lernprozess eines Entscheidungsbaums besteht darin, zu entscheiden, welches Merkmal (d. h. zwischen Lächeln, X-Augen und Blinzeln) am Wurzelknoten verwendet werden soll, der die Daten in Gruppen aufteilt, die so rein wie möglich sind. Mit rein meinen wir, dass die Gruppe hauptsächlich eine Art von Ergebnis hat (entweder beißen oder nicht beißen). <br></br> Beobachten Sie die Gruppen, die durch jedes der Merkmale gebildet werden, und überprüfen Sie, welches Merkmal der Algorithmus für das Lernen von Entscheidungsbäumen auswählen wird, um Gruppen mit der höchsten Reinheit zu erzeugen. Wählen Sie eine aus.</br>";
         // Hide the button
         button.style.display = 'none';
 
@@ -82,7 +82,7 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
                     });
 
                     // Proceed to the next phase with the selected rectangle
-                    message.innerHTML = "Nach Iteration I besteht die Aufgabe darin, das nächste verbleibende Merkmal (X-Augen oder Blinzeln) auszuwählen, das Gruppen mit der höchsten Reinheit erzeugt. <br><br> Welches Merkmal wird der Entscheidungsbaum-Lernalgorithmus aus den folgenden Optionen auswählen, um Gruppen mit der höchsten Reinheit zu erzeugen? Wählen Sie eine aus.<br><br>Tipp: Beobachte die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.<br>";
+                    message.innerHTML = "Nach Iteration I besteht die Aufgabe darin, das nächste verbleibende Merkmal (X-Augen oder Blinzeln) auszuwählen, das Gruppen mit der höchsten Reinheit erzeugt. <br><br>  Welches Merkmal wird der Entscheidungsbaum-Lernalgorithmus aus den folgenden Optionen auswählen, um Gruppen mit der höchsten Reinheit zu erzeugen? Wählen Sie eine aus.<br><br>Tipp: Beobachten Sie die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.<br>";
 
                     // Create the next set of trees for the second phase
                     decisionTreeContainer.innerHTML = ''; // Clear previous trees
@@ -92,7 +92,7 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
                     // Add event listener for the correct tree in Step II
                     handleStepII();
                 } else {
-                    openModal("Tipp: Beobachte die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden. Bitte versuchen Sie es erneut.");
+                    openModal("Tipp: Beobachten Sie die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.");
                 }
             });
         });
@@ -481,7 +481,7 @@ function createSecondStepTree(secondFeature, dataset, imageSources, isSecondStep
             });
 
             // Update the message
-            document.getElementById('message').textContent = "Herzlichen Glückwunsch! Jetzt haben wir ein trainiertes Modell, das wir verwenden können, um vorherzusagen, ob ein Affe beißt oder nicht. Aber zuerst lassen Sie uns das Modell verwenden, um zu sehen, ob es korrekt vorhersagt.";
+            document.getElementById('message').textContent = "Herzlichen Glückwunsch! Jetzt haben wir ein trainiertes Modell, das wir verwenden können, um vorherzusagen, ob ein Affe beißt oder nicht. Aber zuerst lassen Sie uns das Modell verwenden, um zu sehen, ob es korrekt vorhersagt.            ";
 
             // Clear images, entropy, information gain, and bite stats from the final tree and add proper rectangles
             clearFinalTreeAndAddLabels(treeContainer);
