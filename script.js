@@ -60,8 +60,7 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
         ! Aufgabe: Analysieren Sie die folgenden drei Entscheidungsbäume und wählen Sie denjenigen aus, den der Algorithmus wählen würde, d. h. denjenigen mit dem Merkmal, das die reinsten Gruppen erzeugt.  
         </span> <br></br>
         <span style="color: rgb(98, 126, 110); font-family: 'Fira Sans'; font-weight: 900; font-style: italic;">
-        <strong>Tipp: Beobachten Sie die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken 
-        Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.</strong>
+        <strong>Tipp: Beobachten Sie die Gruppen, die durch die Merkmale gebildet werden. Die höchste Reinheit ist gegeben, wenn der Anteil der beißenden Affen links möglichst groß und rechts möglichst klein ist.</strong>
         </span></br>`;
         // Hide the button
         button.style.display = 'none';
@@ -108,8 +107,7 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
                      </span></br><br>
                     <span style="color: rgb(98, 126, 110); font-family: 'Fira Sans'; font-weight: 900; font-style: italic;">
                     Tipp: Beobachten Sie die Gruppen, die durch
-                     die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden 
-                     Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.
+                     die Merkmale gebildet werden. Die höchste Reinheit ist gegeben, wenn der Anteil der beißenden Affen links möglichst groß und rechts möglichst klein ist.
                      </span></br>
                     `;
 
@@ -121,7 +119,7 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
                     // Add event listener for the correct tree in Step II
                     handleStepII();
                 } else {
-                    openModal("Tipp: Beobachten Sie die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden.");
+                    openModal("Tipp: Beobachten Sie die Gruppen, die durch die Merkmale gebildet werden. Die höchste Reinheit ist gegeben, wenn der Anteil der beißenden Affen links möglichst groß und rechts möglichst klein ist. Bitte versuchen Sie es erneut.");
                 }
             });
         });
@@ -155,7 +153,7 @@ function handleStepII() {
                 addEvaluateButton();
             } else if (index === 1) {
                 // User clicked the second rectangle, show alert
-                    openModal("Tipp: Beobachte die Gruppen, die durch die Merkmale gebildet werden. Das Merkmal mit der höchsten Reinheit ist jenes, bei dem sich auf der linken Seite die meisten beißenden Affen und auf der rechten Seite die wenigsten nicht beißenden Affen befinden. Bitte versuchen Sie es erneut.");
+                    openModal("Tipp: Beobachte die Gruppen, die durch die Merkmale gebildet werden. Die höchste Reinheit ist gegeben, wenn der Anteil der beißenden Affen links möglichst groß und rechts möglichst klein ist. Bitte versuchen Sie es erneut.");
             }
         });
     });
