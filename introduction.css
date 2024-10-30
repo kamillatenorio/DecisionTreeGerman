@@ -80,7 +80,7 @@ body {
 
 .slide:nth-child(3),
 .slide:nth-child(5),
-.slide:nth-child(7) {
+.slide:nth-child(6) {
     flex-direction: column;
     text-align: center;
     justify-content: center;
@@ -89,7 +89,7 @@ body {
 
 .slide:nth-child(3) .text-section h2,
 .slide:nth-child(5) .text-section h2,
-.slide:nth-child(7) .text-section h2 {
+.slide:nth-child(6) .text-section h2 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
@@ -97,13 +97,13 @@ body {
 
 .slide:nth-child(3) .image-section,
 .slide:nth-child(5) .image-section,
-.slide:nth-child(7) .image-section {
+.slide:nth-child(6) .image-section {
     margin-bottom: 20px;
 }
 
 .slide:nth-child(3) .image-section img,
 .slide:nth-child(5) .image-section img,
-.slide:nth-child(7) .image-section img {
+.slide:nth-child(6) .image-section img {
     max-width: 80%;
     height: auto;
     border-radius: 10px;
@@ -111,7 +111,7 @@ body {
 
 .slide:nth-child(3) .text-section p,
 .slide:nth-child(5) .text-section p,
-.slide:nth-child(7) .text-section p {
+.slide:nth-child(6) .text-section p {
     font-size: 18px;
     color: #333;
     font-weight: bold;
