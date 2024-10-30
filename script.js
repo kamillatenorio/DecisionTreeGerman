@@ -52,9 +52,10 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
         (d. h. neue Kennzeichnungen für neue Eingaben vorhersagen kann). <br> <br> Wie lernt er ein Modell, das von der Eingabe zur Ausgabe abbilden kann?
         Mal sehen... 
         <br> <br> 
-        Der erste Schritt des Entscheidungsbaumalgorithmus beim Lernen eines Modells besteht darin, zu entscheiden, welches Merkmal (d. h. zwischen Lächeln, 
-        X-Augen und Blinzeln) an der Spitze des Baums (Wurzelknoten) verwendet werden soll. Der Algorithmus wählt das Merkmal aus, das die Daten in Gruppen 
-        trennt, die so rein wie möglich sind. Mit rein meinen wir, dass die Gruppe hauptsächlich eine Art von Ergebnis hat (entweder beißen oder nicht beißen).
+        Der erste Schritt des Entscheidungsbaumalgorithmus beim Lernen des Modells besteht darin, zu entscheiden, welches Merkmal (d. h. "Lächeln", "X-Augen" 
+        und "Blinzeln") an der Spitze des Baums (Wurzelknoten) verwendet werden soll. Der Algorithmus wählt hierfür das Merkmal aus, das die Daten in Gruppen 
+        trennt, die so homogen wie möglich sind. Mit homogen meinen wir, dass die Gruppe möglichst nur eine Art von Beschriftung hat (entweder "beißen" oder 
+        "nicht beißen"). 
         <br></br>
         <span style="color: #574092; font-family: 'Fira Sans'; font-weight: 900; font-size: 18px">
         ! Aufgabe: Analysieren Sie die folgenden drei Entscheidungsbäume und wählen Sie denjenigen aus, den der Algorithmus wählen würde, d. h. denjenigen mit dem Merkmal, das die reinsten Gruppen erzeugt.  
@@ -98,9 +99,9 @@ document.getElementById('collectDataBtn').addEventListener('click', function() {
                     });
 
                     // Proceed to the next phase with the selected rectangle
-                    message.innerHTML = `Nach Iteration I besteht die Aufgabe darin, das nächste verbleibende Merkmal (X-Augen oder Blinzeln) 
-                    auszuwählen, das Gruppen mit der höchsten Reinheit erzeugt. <br><br>  Welches Merkmal wird der Entscheidungsbaum-Lernalgorithmus aus 
-                    den folgenden Optionen auswählen, um Gruppen mit der höchsten Reinheit zu erzeugen? Wählen Sie eine aus.
+                    message.innerHTML = `Nach Iteration I besteht die Aufgabe darin, das nächste verbleibende Merkmal ("X-Augen" oder "Blinzeln") auszuwählen,
+                     das möglichst homogene Gruppen erzeugt.
+                    <br><br>  Welches der folgenden Merkmale wählt der Entscheidungsbaum-Lernalgorithmus aus, um die homogensten Gruppen zu erzeugen? Wählen Sie ein Merkmal aus. 
                     <br><br>
                     <span style="color: #574092; font-family: 'Fira Sans'; font-weight: 900; font-size: 18px;">
                         ! Aufgabe: Analysieren Sie die folgenden 2 Entscheidungsbäume und wählen Sie den aus, den der Algorithmus wählen würde.
